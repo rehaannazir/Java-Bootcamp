@@ -1,22 +1,19 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Main{
+
     public static void main(String[] args){
 
-        ArrayList<String> arr = new ArrayList<String>();
+        Scanner input = new Scanner(System.in);
 
-        arr.add("Rehan");
-        arr.add("Ali");
-        arr.add("Hassan");
+        System.out.print("Enter your name: ");
+        String name = input.nextLine();
 
-        System.out.println(arr.get(1));
+        System.out.println("Hello," + name + "!");
 
-        for(Object i: arr){
-            System.out.println(i);
-        }
+        input.close();
 
-        
-
-
+        System.out.println(args.length); // CLI Arguments
+        System.out.println(args[0]);
     }
 }

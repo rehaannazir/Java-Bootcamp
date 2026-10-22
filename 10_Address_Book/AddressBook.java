@@ -7,6 +7,7 @@ class AddressBook{
 
     public AddressBook(){
         this.persons = new ArrayList<PersonInfo>();
+        this.loadPersons()
     }
 
     public void addPerson(){
@@ -54,6 +55,54 @@ class AddressBook{
             JOptionPane.showMessageDialog(null, "Person not found");
         }
 
-    } 
+    }
+
+    public void loadPersons(){
+        String tokens[] = null;
+        String nam, add, phn;
+
+        try{
+            FileReader loaded_file = new FileReader("persons.txt");
+            BufferedReader bf = new BufferedReader(loaded_file);
+            String line = bf.readLine();
+
+            while(line != null){
+                tokens = line.split(",");
+                nam = token[0];
+                add = token[1];
+                phn = token[2];
+
+                PersonInfo person = new PersonInfo(nam, add, phn);
+                persons.add(person);
+
+                line = bf.readLine();
+            }
+
+            br.close();
+            loaded_file.close();
+        }
+        catch(IOException ioex){
+            System.out.println(ioex);
+        }
+    }
+
+    public void savePersons(){
+
+        try{
+            FileWriter opened_file = new FileWriter("persons.txt");
+            PrintWriter wr = new PrintWriter(opened_file);
+
+            for(PersonInfo i: persons){
+                String line = i.getName() + "," + i.getAddress() + "," + i.getPhoneNumber();
+                wr.println(line);
+            }  
+            wr.flush();
+            wr.close();
+            opened_file.close();
+        }
+        catch(IOException iox){
+            System.out.println(iox);
+        }
+    }
 
 }
