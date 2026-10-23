@@ -1,0 +1,5 @@
+Character streams automatically translate raw bytes into readable characters using a 
+character encoding (like UTF-8). A single character in UTF-8 can take anywhere from 1
+to 4 bytes (e.g., ASCII letters take 1 byte, while emojis or non-Latin scripts take 
+3 or 4 bytes). If you try to read a UTF-8 text file byte-by-byte using a byte 
+stream, multi-byte characters will get split and corrupted into gibberish.
